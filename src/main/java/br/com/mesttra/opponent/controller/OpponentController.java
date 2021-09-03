@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/opponents")
@@ -36,18 +37,18 @@ public class OpponentController {
     }
 
     @GetMapping("/{opponentId}")
-    public Opponent getOpponent(@PathVariable Long opponentId) {
+    public Optional<Opponent> getOpponent(@PathVariable String opponentId) {
         return opponentService.getOpponent(opponentId);
     }
 
     @PutMapping("/{opponentId}")
-    public Opponent alterOpponent(@PathVariable Long opponentId,
+    public Opponent alterOpponent(@PathVariable String opponentId,
                                   @RequestBody AlterOpponentRequest alterOpponentRequest) throws BusinessException {
         return opponentService.alterOpponent(opponentId, alterOpponentRequest);
     }
 
     @PatchMapping("/{opponentId}")
-    public Opponent changeGoalsConceded(@PathVariable Long opponentId, @RequestBody ChangeConcededGoalsRequest changeConcededGoalsRequest){
+    public Opponent changeGoalsConceded(@PathVariable String opponentId, @RequestBody ChangeConcededGoalsRequest changeConcededGoalsRequest){
         return opponentService.changeGoalsConceded(opponentId, changeConcededGoalsRequest);
     }
 }

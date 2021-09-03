@@ -10,11 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-
 import java.util.Optional;
 
-import static java.util.Objects.isNull;
 
 @Service
 public class OpponentServiceImpl implements OpponentService {
@@ -33,12 +30,11 @@ public class OpponentServiceImpl implements OpponentService {
         return this.opponentRepository.findAll(pageable);
     }
 
-    public Opponent getOpponent(Long opponentId) {
-        return this.opponentRepository.getById(opponentId);
+    public Optional<Opponent> getOpponent(String opponentId) {
+        return this.opponentRepository.findById(opponentId);
     }
 
-    @Transactional
-    public Opponent alterOpponent(Long opponentId, AlterOpponentRequest alterOpponentRequest) throws BusinessException {
+    public Opponent alterOpponent(String opponentId, AlterOpponentRequest alterOpponentRequest) throws BusinessException {
 
         Optional<Opponent> opponentDb = this.opponentRepository.findById(opponentId);
 
@@ -50,15 +46,15 @@ public class OpponentServiceImpl implements OpponentService {
         return this.opponentRepository.save(opponent);
     }
 
-    @Transactional
-    public Opponent changeGoalsConceded(Long opponentId, ChangeConcededGoalsRequest changeConcededGoalsRequest) {
-        Opponent opponentDb = this.opponentRepository.getById(opponentId);
+    public Opponent changeGoalsConceded(String opponentId, ChangeConcededGoalsRequest changeConcededGoalsRequest) {
+        Optional<Opponent> opponentDb = this.opponentRepository.findById(opponentId);
 
-        if (isNull(opponentDb)) {
+        if (opponentDb.isEmpty()) {
             return null;
         }
 
-        opponentDb.setGoalsConceded(changeConcededGoalsRequest.getGoalsConceded());
-        return  this.opponentRepository.save(opponentDb);
+        Opponent opponent = opponentDb.get();
+        opponent.setGoalsConceded(changeConcededGoalsRequest.getGoalsConceded());
+        return  this.opponentRepository.save(opponent);
     }
 }

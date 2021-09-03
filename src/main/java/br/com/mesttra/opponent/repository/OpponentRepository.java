@@ -1,10 +1,12 @@
 package br.com.mesttra.opponent.repository;
 
 import br.com.mesttra.opponent.entity.Opponent;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.*;
+
 @Repository
-public interface OpponentRepository extends JpaRepository<Opponent, Long> {
+public interface OpponentRepository extends MongoRepository<Opponent, String> {
 
 }

@@ -8,8 +8,6 @@ import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -27,10 +25,8 @@ public class AddOpponentRequest {
     private Integer bestPlayer;
 
     @NotNull
-    @Enumerated(EnumType.ORDINAL)
     private KeeperLevel keeperLevel;
 
-    @Enumerated(EnumType.STRING)
     private Formation defaultFormation;
 
     @NotNull
@@ -40,7 +36,6 @@ public class AddOpponentRequest {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime nextMatchTime;
 
-    @Enumerated(EnumType.STRING)
     private Result result;
 
 

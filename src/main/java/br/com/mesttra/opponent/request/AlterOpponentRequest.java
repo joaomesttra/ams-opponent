@@ -7,8 +7,6 @@ import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,10 +14,8 @@ public class AlterOpponentRequest {
 
     private Integer bestPlayer;
 
-    @Enumerated(EnumType.ORDINAL)
     private KeeperLevel keeperLevel;
 
-    @Enumerated(EnumType.STRING)
     private Formation defaultFormation;
 
     private boolean rival;

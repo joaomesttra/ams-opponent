@@ -8,16 +8,18 @@ import br.com.mesttra.opponent.request.ChangeConcededGoalsRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 public interface OpponentService {
 
     Opponent addOpponent(AddOpponentRequest addPlayerRequest);
 
     Page<Opponent> listOpponents(Pageable pageable);
 
-    Opponent getOpponent(Long opponentId);
+    Optional<Opponent> getOpponent(String opponentId);
 
-    Opponent alterOpponent(Long opponentId, AlterOpponentRequest alterOpponentRequest) throws BusinessException;
+    Opponent alterOpponent(String opponentId, AlterOpponentRequest alterOpponentRequest) throws BusinessException;
 
-    Opponent changeGoalsConceded(Long opponentId, ChangeConcededGoalsRequest changeConcededGoalsRequest);
+    Opponent changeGoalsConceded(String opponentId, ChangeConcededGoalsRequest changeConcededGoalsRequest);
 
 }
