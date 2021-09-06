@@ -6,10 +6,9 @@ import br.com.mesttra.opponent.repository.OpponentRepository;
 import br.com.mesttra.opponent.request.AddOpponentRequest;
 import br.com.mesttra.opponent.request.AlterOpponentRequest;
 import br.com.mesttra.opponent.request.ChangeConcededGoalsRequest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -26,8 +25,8 @@ public class OpponentServiceImpl implements OpponentService {
         return this.opponentRepository.save(addPlayerRequest.toEntity());
     }
 
-    public Page<Opponent> listOpponents(Pageable pageable) {
-        return this.opponentRepository.findAll(pageable);
+    public List<Opponent> listOpponents() {
+        return (List<Opponent>) this.opponentRepository.findAll();
     }
 
     public Optional<Opponent> getOpponent(String opponentId) {

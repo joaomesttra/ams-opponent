@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,8 +33,8 @@ public class OpponentController {
     }
 
     @GetMapping
-    public Page<Opponent> listOpponents(@PageableDefault Pageable pageable) {
-        return opponentService.listOpponents(pageable);
+    public List<Opponent> listOpponents() {
+        return opponentService.listOpponents();
     }
 
     @GetMapping("/{opponentId}")
